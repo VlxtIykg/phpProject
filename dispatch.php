@@ -1,1 +1,3 @@
-<?php?>
+<?php
+include 'logcall.php';
+?>
