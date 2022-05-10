@@ -3,7 +3,7 @@
 -Well if you were to somehow stumble upon this project and would like to check it out yourself but do not know how to set up sql I'll explain in the folowing steps. This is obviously a very basic step by step guide, unnecessary if you know how to set up databases, import and export sql files. 
 
  <h1>- For windows and linux</h1>
-- Turn on your apache and mysql with xampp <br>
+- Turn on your apache and mysql with xampp <br><br>
 <img src="../images/xampp.png">
 - Go to your browser ctrl+l and type localhost/phpmyadmin <br>
 <img src="../images/localhost.png">
