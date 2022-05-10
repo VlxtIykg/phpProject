@@ -5,9 +5,9 @@
  <h1>- For windows and linux</h1>
 - Turn on your apache and mysql with xampp <br><br>
 <img src="../images/xampp.png">
-- Go to your browser ctrl+l and type localhost/phpmyadmin <br>
+- Go to your browser ctrl+l and type localhost/phpmyadmin <br><br>
 <img src="../images/localhost.png">
-= Click on new on the left panel and add a database with name pessdb and collation type.
+= Click on new on the left panel and add a database with name pessdb and collation type. <br><br>
 <img src="../images/createDb.png">
 -Then import the phpProjectDb.sql to phpmyadmin
 - Your sql file has been exported to phpmyadmin and you are finished.

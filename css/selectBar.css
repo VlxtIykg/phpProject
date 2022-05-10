@@ -1,0 +1,50 @@
+.custom-select {
+    position: relative;
+}
+.custom-select select{
+    display: none;
+}
+.select-selected {
+    background-color: black;
+    width: 101%;
+}
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+.select-items div,.select-selected {
+  color: white;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+.select-items {
+    position: absolute;
+    background-color: #333;
+    width: 80%;
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    top: 100%;
+    /* Fits my screen size not responsive web design (yet?) */
+    left: 1.4%;
+    right: 0;
+    z-index: 2; /* Most scenarios I use z-index 1 for position fixed items so z-index 2 will make it above most */
+}
+.select-hide {
+  display: none;
+}
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(205, 0, 0, 0.1);
+}

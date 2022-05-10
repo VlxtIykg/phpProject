@@ -1,14 +1,12 @@
 <!doctype html>
 <html lang="en">
-<head>
+    <head>
     <!-- Most of these code are custom coded by me, a few from w3schools/stackoverflow :D!   -->
     <meta charset="UTF-8">
     <link href="CSS/bootstrap.css" rel="stylesheet" type="text/css">
     <title>Log Call</title>
     <style>
-        .w80 {
-            width: 80%;
-        }
+
         .mt20 {
             margin-top: 20px;
         }
@@ -18,56 +16,8 @@
         .tac {
             text-align: center;
         }
-        .custom-select {
-            position: relative;
-        }
-        .custom-select select{
-            display: none;
-        }
-        .select-selected {
-            background-color: black;
-            width: 101%;
-        }
-        .select-selected:after {
-            position: absolute;
-            content: "";
-            top: 14px;
-            right: 10px;
-            width: 0;
-            height: 0;
-            border: 6px solid transparent;
-            border-color: #fff transparent transparent transparent;
-        }
-        .select-selected.select-arrow-active:after {
-          border-color: transparent transparent #fff transparent;
-          top: 7px;
-        }
-        .select-items div,.select-selected {
-          color: white;
-          padding: 8px 16px;
-          border: 1px solid transparent;
-          border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-          cursor: pointer;
-        }
-        .select-items {
-            position: absolute;
-            background-color: #333;
-            width: 80%;
-            max-height: 300px;
-            overflow-x: hidden;
-            overflow-y: scroll;
-            top: 100%;
-            /* Fits my screen size not responsive web design (yet?) */
-            left: 1.4%;
-            right: 0;
-            z-index: 2; /* Most scenarios I use z-index 1 for position fixed items so z-index 2 will make it above most */
-        }
-        .select-hide {
-          display: none;
-        }
-        .select-items div:hover, .same-as-selected {
-          background-color: rgba(205, 0, 0, 0.1);
-        }
+        <?php include './css/selectBar.css' ?>
+        /* Due to hierachy css theory they will inherit the most recent css styling making note.css styles be applied over table */
         <?php include './css/note.css' ?>
     </style>
 </head>
@@ -76,14 +26,56 @@
         <?php require_once 'nav.php' ?>
         <div class="note">
             <table>
-                <th>Note</th>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
+                <div class="thBote" style="position: relativel display: flex;">
+                    <th>Note</th>
+                </div>
             </table>
+            <!-- Originally wanted a table, with divs, didn't seem that effective -->
+                <div style="border-top: solid 1px #e5e5e6;" class="noteLayout">
+                  <p style="color: #8a0f0c; font-weight: bold;">Input Field</p>
+                  <p style="color: #8a0f0c; font-weight: bold;">Input Name/ID</p>
+                  <p style="color: #8a0f0c; font-weight: bold;">Validation need to be done</p>
+                </div>
+                <div style="" class="noteLayout hoverDiv">
+                  <p>Caller's Name</p>
+                  <p>callerName</p>
+                  <ul>
+                      <li class="noteList">Not a required field</li>
+                      <li class="noteList">Only alphabets are allowed</li>
+                      <li class="noteList">Spacing lower, and upper case accepted</li>
+                  </ul>
+                </div>
+                <div style="" class="noteLayout hoverDiv">
+                  <p>Contact number</p>
+                  <p>contactNo</p>
+                  <ul>
+                      <li class="noteList">Required field. Cannot be left empty</li>
+                      <li class="noteList">Only 8 digits allowed</li>
+                      <li class="noteList">Cannot be nan, no alphabets, no symbols</li>
+                  </ul>
+                </div>
+                <div style="" class="noteLayout hoverDiv">
+                  <p>Location of Incident</p>
+                  <p>locationofIncident</p>
+                  <ul>
+                      <li class="noteList">Reqiured field. Cannot be left empty</li>
+                  </ul>
+                </div>
+                <div style="" class="noteLayout hoverDiv">
+                  <p>Type of Incident</p>
+                  <p>typeofincident</p>
+                  <ul>
+                      <li class="noteList">Reqiured field.</li>
+                      <li class="noteList">A selection must be amde</li>
+                  </ul>
+                </div>
+                <div style="" class="noteLayout hoverDiv">
+                  <p>Description of Incident</p>
+                  <p>descriptionofIncident</p>
+                  <ul>
+                      <li class="noteList">Required field. Cannot be left empty</li>
+                  </ul>
+                </div>
         </div>
         <section class="mt20">
             <form action="dispatch.php" method="post" id="event" name="event">
