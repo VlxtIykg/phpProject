@@ -1,0 +1,7 @@
+#navBanner {
+    /* The css code is kinda redundant but keeps things organized */
+    /* The css code is also being executed on the php file so the dir starts at nav.php */
+    background-image: url(images/banner.jpg);
+    background-size: cover;
+    height: 200px;
+}
