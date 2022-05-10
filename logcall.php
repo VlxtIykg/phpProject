@@ -68,11 +68,23 @@
         .select-items div:hover, .same-as-selected {
           background-color: rgba(205, 0, 0, 0.1);
         }
+        <?php include './css/note.css' ?>
     </style>
 </head>
 <body>
     <div class="container w80">
         <?php require_once 'nav.php' ?>
+        <div class="note">
+            <table>
+                <th>Note</th>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+            </table>
+        </div>
         <section class="mt20">
             <form action="dispatch.php" method="post" id="event" name="event">
                 <div class="form-group row">

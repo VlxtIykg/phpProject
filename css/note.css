@@ -1,0 +1,7 @@
+.note {
+    background-color: #fff4e4;
+    position: relative;
+}
+.note > table > th {
+    color: red;
+}
