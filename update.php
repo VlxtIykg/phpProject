@@ -20,6 +20,7 @@ $statuses = [];
 $car = null;
 $car2 = null;
 if(isset($_POST['search'])) {
+    
     echo '<script>console.log(`Hi search button was clicked!`)</script>';
     
     //check if assoc array has car we are looking for
@@ -74,7 +75,63 @@ if(isset($_POST['search'])) {
             array_push($statuses, $status);
         };
     };
-    
+    if(isset($_POST['btnUpdate'])) {
+        require_once 'db.php';
+    $updateSuccess = false;
+
+    define('DB_USER', "root");
+    define('DB_PASSWORD', "");
+    define('DB_DATABASE', "pessdb");
+    define('DB_SERVER', "localhost");
+
+    if($conn -> connect_error) {
+        die ("Connection failed: {$conn -> connect_error}");
+    }
+    $newStatusId = $_POST['carStatus'];
+    $carid = $_POST['patrolCarId'];
+
+    $sql = "UPDATE patrolcar SET patrolcar_status_id = '{$newStatusId}' WHERE patrolcar_id ='{$carid}'";
+    $updateSucess = $conn -> query($sql);
+    if($updateSuccess !== true) {
+        echo "Error: {$sql} <br> {$conn -> error}";
+    }
+
+    if($newStatusId == '4') {
+        $sql = "UPDATE dispatch SET time_arrived = NOW() WHERE time_arrived is NULL AND patrolcar_id = {$car_ID}";
+        $updateSuccess = $conn -> query($sql);
+        if(!$updateSuccess) {
+            echo "Error: {$sql} <br> {$conn -> error}";
+        }
+    }
+    else if ($newStatusId == "3") {
+        $sql = "SELECT incident_id from dispatch WHERE time_completed is NULL AND patrolcar_id = '{$carid}'";
+        $result = $conn->query($sql);
+
+        $incidentId = 0;
+        if ($result -> num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {
+                $incidentId = $row['incident_id'];
+            }
+        }
+
+        $sql = "UPDATE dispatch SET time_completed = NOW() WHERE time_completed is NULL AND patrolcar_id = '{$carid}'";
+        $updateSuccess = $conn -> query($sql);
+        if(!$updateSuccess) {
+            echo "Error: {$sql} <br> {$conn -> error}";
+        }
+
+        $sql = "UPDATE incident SET incident_status_id = '3' WHERE incident_id = {$incidentId}";
+
+        $updateSuccess = $conn -> query($sql);
+        if($updateSuccess === false) {
+            echo "Error: {$sql} <br> {$conn -> error}";
+        }
+    }
+    if ($updateSuccess === TRUE) {
+        //header("Location: search.php?message=success");
+        echo '<script>alert("You have successfully changed the patrol car status!"); window.location.href="search.php"</script>';
+    }
+    }
     ?>
 <section>
     <form action="update.php" method="POST">
