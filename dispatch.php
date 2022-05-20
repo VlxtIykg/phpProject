@@ -143,7 +143,7 @@
                             <?php require_once 'db.php';
                             $cars = [];
 
-                            while($row = $patrolExport->fetch_assoc()) {
+                            while ($row = $patrolExport->fetch_assoc()) {
                                 $pcID = $row['patrolcar_id'];
                                 $pcSID = $row['patrolcar_status_id'];
                                 $statuses = ["Dispatched", "Patrol", "Free", "Arrived"];
@@ -221,14 +221,16 @@ if(isset($_POST["dispatchButton"])) {
     $insertTest = false;
     $dispatched = $_POST["chooseCar"];
     $amtOfDispatched = count($dispatched);
-    //echo "<script>console.log(`{$amtOfDispatched}`);</script>";
+    echo "<script>console.log(`Initial amt of dispatched: {$amtOfDispatched}`);</script>";
     $incidentStatusId = 0;
     switch ($incidentStatusId) {
-        case ($amtOfDispatched > 0):
+        case ('{$amtOfDispatched}' > '{$incidentStatusId}'):
             $incidentStatusId = 2;
+                echo "<script>console.log(`amtOfDispatched: {$amtOfDispatched} incidentStatusId: {$incidentStatusId}`);</script>";
             break;
         default:
             $incidentStatusId = 1;
+            echo "<script>console.log(`amtOfDispatched: {$amtOfDispatched} incidentStatusId: {$incidentStatusId}`);</script>";
             break;
     }
 
@@ -245,34 +247,48 @@ if(isset($_POST["dispatchButton"])) {
     $val3 = end($_SESSION["locationOfIncident"]);
     $val4 = end($_SESSION["typeOfIncident"]);
     $val5 = end($_SESSION["descriptionOfIncident"]);
-    $dataUpdating = "INSERT into incident (caller_name, phone_number, incident_type_id, incident_location, incident_desc, incident_status_id) values (
-        '$val1, $val2, $val3, $val4, $val5, $incidentStatusId'
+    echo "<script>console.log(`{$val1} + {$val2} + {$val3} + {$val4} + {$val5} + {$incidentStatusId}`);</script>";
+    $dataUpdating = "INSERT INTO incident (caller_name, phone_number, incident_location, incident_type_id, incident_desc, incident_status_id) VALUES (' ".$val1." ', '" .$val2. "', '" .$val3. "', '" .$val4. "', '" .$val5. "', '" .$incidentStatusId. "'
     )";
+    echo "<script>console.log(`{$dataUpdating}`);</script>";
     $insertTest = $conn -> query($dataUpdating);
     $error = $conn -> error;
+    //Error log
+
+    /* function errorMessages(content) {
+        echo "<script>console.log(`{$content}`);</script>";
+    } */
+    $errorMessages = function () use ($error) {
+        echo $message;
+    };
     //check if upload was successful
-    $errorMsg1 = "Error at {$dataUpdating} ?";
-    $errorMsg2 = "Error at {$error} ?";
-    $testTemplate = "<script>console.log(`hi`);</script>";
-    echo ($insertTest) ? $incidentId = mysqli_insert_id($conn) + $testTemplate : $errorMsg1 + '<br>' + $errorMsg2;
-    
+    function idConnection() {
+        $incidentId = "SELECT incident_id from incident ";
+        echo "<script>console.log(`hi this is success message`);</script>";
+    }
+    ($insertTest) ? idConnection() : $errorMessages();
     $updateTest = false;
     $dispatchTest = false;
 
     for ($i=0; $i < $amtOfDispatched; $i++) { 
-        $carIDArr = $dispatched[i];
-        $setStatus = "UPDATE patrolcar SET patrolcar_status_id='1' WHERE patrolcar_id={$carIDArr}";
-            $error2 = $conn -> error;
-            $updateTest = $conn -> query($dataUpdating);
-            $errorMsg3 = "Error at {$setStatus} ?"; 
-            $errorMsg4 = "Error at {$error2} ?";
-        echo ($updateTest) ? $dispatchUpdate = "INSERT into dispatch (incident_id, patrolcar_id, time_dispatched) values ($incidentId, $carIDArr, now())" : $errorMsg3 + $errorMsg4;
-
-
+        $carIDArr = $dispatched[$i];
+        $setStatus = "UPDATE patrolcar SET patrolcar_status_id='1' WHERE patrolcar_id='{$carIDArr}' ";
+        $error2 = $conn -> error;
+        echo "$carIDArr";   
+        $updateStatus = $conn -> query($setStatus);
+        $errorMsg3 = "Error at {$setStatus} ? <br> Error at {$error2}"; 
+        $incidentId = "SELECT incident_id from incident ";
+        $data = $conn -> query($incidentId);  
+        while ($row = $data->fetch_assoc()) {
+            $grabId = $row["incident_id"];
+        }
+        $dispatchUpdate = "INSERT INTO dispatch (incident_id, patrolcar_id, time_dispatched) VALUES ($grabId,   '{$carIDArr}', now())";
+        $updateDispatch = $conn -> query($dispatchUpdate);
+        echo "<script>console.log(`{$updateTest}`);</script>";
+        ($updateDispatch) ? $dispatchUpdate : errorMessages($errorMsg3);
     }
-    $updateTest = 
     $carIDStr = implode(", ", $dispatched); 
-    if($insertTest === false) {
+    if($insertTest === true) {
         echo "<script>alert(`Patrol Car {$carIDStr} has been dispatched!`); window.location.href = 'logcall.php'</script>";
     }
 }
