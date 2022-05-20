@@ -1,0 +1,102 @@
+/* Semi rws for the form */
+.w80 {
+    width: 1300px;         
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+ }
+ .note {
+    background-color: #faf0e6;
+    position: relative;
+    box-sizing: border-box;
+    width: 1300px;
+    padding: 1.3rem;
+    margin: 1em;
+}
+ @media only screen and (max-width: 1200px){
+     /*Tablets [601px -> 1200px]*/
+     .w80 {
+         max-width: 600px;
+         margin-left: auto;
+         margin-left: auto;
+        padding: 0;
+     }
+     .note {
+    background-color: #faf0e6;
+    position: relative;
+    box-sizing: border-box;
+    width: 600px;
+    padding: 1.3rem;
+    margin: 1em;
+}
+ }
+ 
+ @media only screen and (max-width: 600px){
+     /*Big smartphones [426px -> 600px]*/
+     .w80 {
+        max-width: 400px;
+        margin-left: auto;
+        margin-left: auto;
+        padding: 0;
+    }
+    .note {
+    background-color: #faf0e6;
+    position: relative;
+    box-sizing: border-box;
+    width: 400px;
+    padding: 1.3rem;
+    margin: 1em;
+}
+ }
+ 
+ @media only screen and (max-width: 425px){
+     /*Small smartphones [325px -> 425px]*/
+     .w80 {
+        max-width: 325px;
+        margin-left: auto;
+        margin-left: auto;
+        padding: 0;
+    }
+    .note {
+    background-color: #faf0e6;
+    position: relative;
+    box-sizing: border-box;
+    width: 325px;
+    padding: .8rem;
+    margin: .7em;
+}
+ }
+ 
+
+table, .natural__center {
+    margin-left: auto;
+    margin-right: auto;
+}
+.noteLayout {
+    border-bottom: solid 1px #e5e5e6;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between safe;
+    box-sizing: border-box;
+    padding: 1em 3em;
+    /* gap: 2em; */
+}
+.noteLayout > p {
+    flex-grow: 1;
+}
+.noteLayout:last-child {
+    border-bottom: none;
+    display: flex; 
+    justify-content: space-between;
+    padding: 1em 7em;
+}
+.hoverDiv:hover {
+    background-color: #e7ded5;
+}
+hr {
+    color: #e5e5e6;
+    background-color: #e5e5e6;
+}
+.noteList {
+
+}
