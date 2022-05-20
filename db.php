@@ -16,3 +16,4 @@ $patrolExport = $conn->query($patrolDetails);
 
 $patrolcarAmt = "SELECT patrolcar_id from patrolcar";
 $patrolAmtExport = $conn->query($patrolDetails);
+
