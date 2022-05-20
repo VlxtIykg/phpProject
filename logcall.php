@@ -15,9 +15,10 @@
         .tac {
             text-align: center;
         }
-        <?php include './css/selectBar.css' ?>
+<?php include './css/selectBar.css' ?>
         /* Due to hierachy css theory they will inherit the most recent css styling making note.css styles be applied over table */
-        <?php include './css/note.css' ?>
+<?php include './css/note.css' ?>
+
     </style>
     <script async src="js/jquery-3.5.0.min.js" type="text/javascript"></script> <!-- To prevent bootstrap from loading before jquery -->
     <script defer src="js/bootstrap.js" type="text/javascript"></script>
@@ -27,7 +28,7 @@
 </head>
 <body>
     <div class="container w80">
-        <?php require_once 'nav.php' ?>
+<?php require_once 'nav.php' ?>
         <div class="note">
             <table>
                 <div class="thBote" style="position: relativel display: flex;">
@@ -82,7 +83,7 @@
                 </div>
         </div>
         <section class="mt20">
-            <form action="something.php" method="post" id="event" name="event">
+            <form action="dispatch.php" method="post" id="event" name="event">
                 <div class="form-group row">
                     <label for="callerName" class="col-sm-4 col-form-label">Caller's Name</label>
                     <div class="col-sm-8">
@@ -123,7 +124,7 @@
                 <div class="form-group row pdng20">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-8 tac">
-                        <input type="submit" id="btnProcessCall" value="Process Call" class="btn btn-primary">
+                        <input type="submit" name="processButton" id="processButton" value="Process Call" class="btn btn-primary">
                         <input type="reset" name="btnReset" value="Reset" class="btn btn-primary">
                     </div>
                 </div>
