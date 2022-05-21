@@ -75,8 +75,14 @@ table, .natural__center {
 .noteLayout {
     border-bottom: solid 1px #e5e5e6;
     display: flex; 
-    justify-content: space-between;
-    padding: 1em 7em;
+    flex-direction: row;
+    justify-content: space-between safe;
+    box-sizing: border-box;
+    padding: 1em 3em;
+    /* gap: 2em; */
+}
+.noteLayout > p {
+    flex-grow: 1;
 }
 .noteLayout:last-child {
     border-bottom: none;

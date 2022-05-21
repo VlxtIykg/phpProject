@@ -9,6 +9,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 $sql = "SELECT incident_type_desc, incident_type_id from incident_type";
-$result = $conn->query($sql);
+$incident = $conn->query($sql);
 
-?>
+$patrolDetails = "SELECT patrolcar_id, patrolcar_status_id from patrolcar";
+$patrolExport = $conn->query($patrolDetails);
+
+$patrolcarAmt = "SELECT patrolcar_id from patrolcar";
+$patrolAmtExport = $conn->query($patrolDetails);

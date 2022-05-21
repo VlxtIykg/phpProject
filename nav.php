@@ -1,4 +1,4 @@
-<style><?php include 'CSS/nav.css'; include 'CSS/bootstrap.css';?></style>
+<style><?php include 'css/nav.css'; include 'css/bootstrap.css';?></style>
 <header id="navBanner"></header>
 <nav class="navbar navbar-expand-sm bg=light">
     <ul class="navbar-nav">
